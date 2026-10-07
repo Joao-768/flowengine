@@ -270,8 +270,8 @@ errors are logged in full and answered with a generic 500.
 
 ## Themes
 
-Light, dark and system, chosen with the toggle in the top bar (it cycles
-system, light, dark, and its label names the current mode). The choice is kept
+Dark by default, with light and system as choices: the toggle in the top bar
+cycles dark, light and system, and its label names the current mode. The choice is kept
 in `localStorage` (`wae-theme`), and `frontend/public/theme.js` applies it in
 `<head>` before the first paint, so there is no flash of the wrong theme.
 
@@ -366,10 +366,10 @@ Or in separate terminals: `npm run dev:api`, `npm run worker`,
 
 | Service | URL |
 | --- | --- |
-| Frontend | http://localhost:5174 |
+| Frontend | http://localhost:5176 |
 | API | http://localhost:3000 (`/health` checks Postgres and Redis) |
 
-Port 5174 is pinned (`strictPort`) in `frontend/vite.config.ts`.
+Port 5176 is pinned (`strictPort`) in `frontend/vite.config.ts`.
 
 ### Demo workflows (`npm run seed`)
 
@@ -396,7 +396,7 @@ Backend (`backend/.env`, validated at startup by `src/config/env.ts`):
 | `QUEUE_PREFIX` | `wae` | Redis key prefix (tests use their own) |
 | `JWT_SECRET` | required | 16+ chars, 32+ in production |
 | `JWT_EXPIRES_IN` | `7d` | token lifetime |
-| `FRONTEND_URL` | `http://localhost:5174` | CORS origins, comma-separated |
+| `FRONTEND_URL` | `http://localhost:5176` | CORS origins, comma-separated |
 | `PORT` | `3000` | API port |
 | `WORKER_CONCURRENCY` | `5` | jobs per worker process |
 | `RUN_WORKER_IN_API` | `false` | also run the worker inside the API process |

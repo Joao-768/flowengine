@@ -25,7 +25,7 @@ export function Mark({ to = '/dashboard' }: { to?: string }) {
     )
 }
 
-const NEXT_THEME: Record<ThemeMode, ThemeMode> = { system: 'light', light: 'dark', dark: 'system' }
+const NEXT_THEME: Record<ThemeMode, ThemeMode> = { dark: 'light', light: 'system', system: 'dark' }
 const THEME_LABEL: Record<ThemeMode, string> = {
     system: 'Theme: follows your system',
     light: 'Theme: light',
@@ -33,7 +33,7 @@ const THEME_LABEL: Record<ThemeMode, string> = {
 }
 const THEME_ICON = { system: Monitor, light: Sun, dark: Moon }
 
-/** One button that cycles system, light and dark; the label names the current mode. */
+/** One button that cycles dark, light and system; the label names the current mode. */
 export function ThemeToggle({ className = '' }: { className?: string }) {
     const mode = useThemeMode()
     const Icon = THEME_ICON[mode]

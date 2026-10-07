@@ -10,6 +10,6 @@ export default defineConfig({
         // Use the shared package from source: no build step needed for the UI.
         alias: { '@wae/shared': sharedSource },
     },
-    server: { port: 5174, strictPort: true },
-    preview: { port: 5174, strictPort: true },
+    server: { port: 5176, strictPort: true },
+    preview: { port: 5176, strictPort: true },
 })

@@ -10,7 +10,7 @@ export default defineConfig({
     testDir: './e2e',
     timeout: 60_000,
     use: {
-        baseURL: 'http://localhost:5174',
+        baseURL: 'http://localhost:5176',
         trace: 'retain-on-failure',
     },
     projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
@@ -21,6 +21,6 @@ export default defineConfig({
             url: 'http://localhost:3000/health',
             reuseExistingServer: true,
         },
-        { command: 'npm run dev', url: 'http://localhost:5174', reuseExistingServer: true },
+        { command: 'npm run dev', url: 'http://localhost:5176', reuseExistingServer: true },
     ],
 })

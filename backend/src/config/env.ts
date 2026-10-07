@@ -28,7 +28,7 @@ const schema = z
         JWT_EXPIRES_IN: z.string().default('7d'),
 
         /** Comma-separated list of origins allowed by CORS. */
-        FRONTEND_URL: z.string().default('http://localhost:5174'),
+        FRONTEND_URL: z.string().default('http://localhost:5176'),
 
         /** Run the worker inside the API process (single-process hosting). */
         RUN_WORKER_IN_API: bool.default(false),
