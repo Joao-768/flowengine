@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { errorText } from '../api/client'
 import { auth } from '../api/endpoints'
 import { useAuth } from '../auth/AuthContext'
-import { Fault, Mark } from '../components/ui'
+import { Fault, Mark, ThemeToggle } from '../components/ui'
 
 function useSubmit() {
     const [error, setError] = useState('')
@@ -40,6 +40,7 @@ export function Login() {
 
     return (
         <div className="gate">
+            <ThemeToggle className="corner-toggle" />
             <Mark to="/" />
             <h2>Sign in</h2>
             <p className="sub">Access your workflows and their execution history.</p>
@@ -101,6 +102,7 @@ export function Register() {
 
     return (
         <div className="gate">
+            <ThemeToggle className="corner-toggle" />
             <Mark to="/" />
             <h2>Create account</h2>
             <p className="sub">Your workflows and executions are visible only to you.</p>

@@ -50,7 +50,10 @@ export function ExecutionGraph({ execution }: { execution: ExecutionDetail }) {
                 return {
                     ...edge,
                     animated: taken && inProgress,
-                    style: { stroke: taken ? '#bdbdbd' : '#2e2e2e', strokeWidth: taken ? 1.6 : 1 },
+                    style: {
+                        stroke: taken ? 'var(--edge-taken)' : 'var(--edge-untaken)',
+                        strokeWidth: taken ? 1.6 : 1,
+                    },
                 }
             }),
         }

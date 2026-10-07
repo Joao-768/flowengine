@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { Navigate, NavLink, Outlet } from 'react-router-dom'
 import { useAuth } from '../auth/AuthContext'
-import { Mark } from './ui'
+import { Mark, ThemeToggle } from './ui'
 
 const TABS = [
     { to: '/dashboard', label: 'Dashboard' },
@@ -31,6 +31,7 @@ function Rail() {
                 </div>
                 <div className="whoami">
                     <span className="who">{user?.name}</span>
+                    <ThemeToggle />
                     <button className="btn-sm" onClick={logout}>
                         Log out
                     </button>

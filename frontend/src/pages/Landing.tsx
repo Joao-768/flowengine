@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Mark } from '../components/ui'
+import { Mark, ThemeToggle } from '../components/ui'
 
 const DIAGRAM = `WHEN  webhook received
   │
@@ -19,6 +19,7 @@ export default function Landing() {
                 <div className="rail-inner">
                     <Mark to="/" />
                     <div className="whoami" style={{ marginLeft: 'auto' }}>
+                        <ThemeToggle />
                         <Link to="/login">Sign in</Link>
                         <Link to="/register" className="btn btn-primary btn-sm">
                             Create account

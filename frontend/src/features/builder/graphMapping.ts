@@ -25,7 +25,12 @@ export type FlowNode = Node<FlowNodeData, 'workflow'>
 /** Branch names are printed on the condition's handles, so edges stay unlabelled. */
 export function edgeStyle(): Partial<Edge> {
     return {
-        markerEnd: { type: MarkerType.ArrowClosed, width: 16, height: 16, color: '#5a5a5a' },
+        markerEnd: {
+            type: MarkerType.ArrowClosed,
+            width: 16,
+            height: 16,
+            color: 'var(--edge-marker)',
+        },
     }
 }
 

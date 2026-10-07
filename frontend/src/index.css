@@ -1,6 +1,58 @@
 /* ── tokens ────────────────────────────────────────────────── */
 
+/*
+ * The identity is monochrome: ink on a pure background, mono plates, nothing
+ * decorative. One hue carries the brand, the periwinkle "run" signal: it is
+ * the colour of the engine at work (a queued or running step) and marks what
+ * is active or selected (the current tab, the selected node, the connection
+ * being drawn, keyboard focus). Primary buttons stay ink.
+ *
+ * Light is ink on white, dark is ink on black; the theme is set on
+ * <html data-theme> by /theme.js before first paint.
+ */
 :root {
+    --bg: #ffffff;
+    --panel: #fafafa;
+    --raised: #f2f2f2;
+    --border: #e5e5e5;
+    --border-strong: #cfcfcf;
+    --ink: #111111;
+    --ink-mid: #525252;
+    --ink-low: #6b6b6b;
+    /* text on the solid ink button, and its hover fill */
+    --on-ink: #ffffff;
+    --ink-hover: #000000;
+
+    /* status colours: used sparingly, only where state matters */
+    --ok: #1a7f37;
+    --halt: #cf222e;
+    --wait: #9a6700;
+    --run: #4a5fd0;
+    --accent: var(--run);
+
+    /* canvas */
+    --canvas-dot: #d4d4d4;
+    --edge: #9e9e9e;
+    --edge-marker: #8a8a8a;
+    --edge-taken: #3d3d3d;
+    --edge-untaken: #d6d6d6;
+    --minimap-mask: rgb(240 240 240 / 0.7);
+    --minimap-node: #d4d4d4;
+    --mark-tile: #111111;
+    --mark-stroke: #ffffff;
+
+    --scrim: rgb(17 17 17 / 0.35);
+
+    --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+    --rail-height: 56px;
+    --radius: 6px;
+
+    color-scheme: light;
+}
+
+:root[data-theme='dark'] {
     --bg: #000;
     --panel: #0b0b0b;
     --raised: #121212;
@@ -8,19 +60,26 @@
     --border-strong: #3a3a3a;
     --ink: #ededed;
     --ink-mid: #a1a1a1;
-    --ink-low: #6e6e6e;
+    --ink-low: #808080;
+    --on-ink: #000000;
+    --ink-hover: #ffffff;
 
-    /* status colours: used sparingly, only where state matters */
     --ok: #4ac26b;
     --halt: #f05a5a;
     --wait: #d9a441;
     --run: #7aa2f7;
 
-    --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
-    --sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --canvas-dot: #1f1f1f;
+    --edge: #4a4a4a;
+    --edge-marker: #5a5a5a;
+    --edge-taken: #bdbdbd;
+    --edge-untaken: #2e2e2e;
+    --minimap-mask: rgb(0 0 0 / 0.6);
+    --minimap-node: #2a2a2a;
+    --mark-tile: #161616;
+    --mark-stroke: #ededed;
 
-    --rail-height: 56px;
-    --radius: 6px;
+    --scrim: rgb(0 0 0 / 0.7);
 
     color-scheme: dark;
 }
@@ -56,7 +115,7 @@ a:hover {
 }
 
 :focus-visible {
-    outline: 2px solid var(--ink-mid);
+    outline: 2px solid var(--accent);
     outline-offset: 2px;
 }
 
@@ -147,6 +206,33 @@ main.wrap {
 .tabs a:hover,
 .tabs a.on {
     color: var(--ink);
+}
+.tabs a.on {
+    box-shadow: inset 0 -2px 0 var(--accent);
+}
+
+.theme-toggle {
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius);
+    background: transparent;
+    color: var(--ink-mid);
+    flex: none;
+}
+.theme-toggle:hover {
+    background: var(--raised);
+    color: var(--ink);
+}
+
+/* the theme toggle on pages without the rail (sign in, register) */
+.corner-toggle {
+    position: fixed;
+    top: 12px;
+    right: 12px;
 }
 
 .whoami {
@@ -252,11 +338,11 @@ button:disabled:hover {
 .btn-primary {
     background: var(--ink);
     border-color: var(--ink);
-    color: #000;
+    color: var(--on-ink);
 }
 .btn-primary:hover {
-    background: #fff;
-    border-color: #fff;
+    background: var(--ink-hover);
+    border-color: var(--ink-hover);
 }
 
 .btn-sm {
@@ -958,7 +1044,7 @@ dialog {
 }
 
 dialog::backdrop {
-    background: rgb(0 0 0 / 0.7);
+    background: var(--scrim);
 }
 
 .dialog-body {
@@ -1258,18 +1344,18 @@ dialog::backdrop {
 
 .react-flow {
     --xy-background-color: var(--bg);
-    --xy-background-pattern-color: #1f1f1f;
-    --xy-edge-stroke: #4a4a4a;
-    --xy-edge-stroke-selected: var(--ink);
-    --xy-connectionline-stroke: var(--ink-mid);
+    --xy-background-pattern-color: var(--canvas-dot);
+    --xy-edge-stroke: var(--edge);
+    --xy-edge-stroke-selected: var(--accent);
+    --xy-connectionline-stroke: var(--accent);
     --xy-attribution-background-color: transparent;
     --xy-controls-button-background-color: var(--panel);
     --xy-controls-button-background-color-hover: var(--raised);
     --xy-controls-button-color: var(--ink-mid);
     --xy-controls-button-border-color: var(--border);
     --xy-minimap-background-color: var(--panel);
-    --xy-minimap-mask-background-color: rgb(0 0 0 / 0.6);
-    --xy-minimap-node-background-color: #2a2a2a;
+    --xy-minimap-mask-background-color: var(--minimap-mask);
+    --xy-minimap-node-background-color: var(--minimap-node);
     --xy-handle-background-color: var(--ink-mid);
     --xy-handle-border-color: var(--bg);
 }
@@ -1309,7 +1395,8 @@ dialog::backdrop {
 }
 
 .flow-node.selected {
-    border-color: var(--ink);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
 }
 
 .flow-node.has-issue {

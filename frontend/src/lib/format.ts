@@ -29,7 +29,8 @@ export function formatDuration(ms: number | null | undefined): string {
     return `${Math.floor(minutes / 60)}h ${minutes % 60}m`
 }
 
-const relative = new Intl.RelativeTimeFormat(undefined, { numeric: 'auto' })
+// Words, not just digits: kept in English to match the rest of the interface.
+const relative = new Intl.RelativeTimeFormat('en', { numeric: 'auto' })
 
 export function formatRelative(iso: string | null | undefined): string {
     if (!iso) return 'never'

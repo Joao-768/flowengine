@@ -268,6 +268,27 @@ errors are logged in full and answered with a generic 500.
 | Tests | Vitest, Supertest, Playwright |
 | Tooling | npm workspaces, oxlint, Prettier |
 
+## Themes
+
+Light, dark and system, chosen with the toggle in the top bar (it cycles
+system, light, dark, and its label names the current mode). The choice is kept
+in `localStorage` (`wae-theme`), and `frontend/public/theme.js` applies it in
+`<head>` before the first paint, so there is no flash of the wrong theme.
+
+The look is monochrome on purpose: ink on white or on black, mono labels,
+nothing decorative. One hue carries the identity, the periwinkle "run" signal.
+It is the colour of the engine at work (a queued or running step) and marks
+what is active or selected: the current tab, the selected node, the connection
+being drawn and keyboard focus. Primary buttons stay ink. Success, failure and
+waiting keep green, red and amber in both themes, and every state is also
+written as text.
+
+Colours are CSS variables at the top of `frontend/src/index.css`, defined once
+per theme. The canvas has its own set (`--canvas-dot`, `--edge`,
+`--edge-taken`, `--edge-untaken`, `--minimap-*`), and React Flow's `--xy-*`
+variables read from them, so nodes, edges, handles and labels keep their
+contrast in both themes.
+
 ## Database
 
 ```
