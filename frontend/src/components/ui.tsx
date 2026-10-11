@@ -4,21 +4,27 @@ import { Monitor, Moon, Sun } from 'lucide-react'
 import { pretty } from '../lib/format'
 import { setThemeMode, useThemeMode, type ThemeMode } from '../lib/theme'
 
-/** The "W" workflow mark from the favicon, drawn inline. The tile and stroke
- *  come from theme tokens, so the mark reads on white and on black. */
+/** The branching workflow mark from the favicon, drawn inline. The tile and
+ *  stroke come from theme tokens, so the mark reads on white and on black. */
 export function Mark({ to = '/dashboard' }: { to?: string }) {
     return (
         <Link to={to} className="mark">
             <svg width="20" height="20" viewBox="0 0 64 64" aria-hidden="true">
                 <rect width="64" height="64" rx="14" fill="var(--mark-tile)" />
-                <path
-                    d="M13 19 L22 45 L32 27 L42 45 L51 19"
+                <g
                     fill="none"
                     stroke="var(--mark-stroke)"
-                    strokeWidth="7"
+                    strokeOpacity="0.6"
+                    strokeWidth="3.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                />
+                >
+                    <path d="M17 32 H30 Q34 32 34 24 H47" />
+                    <path d="M17 32 H30 Q34 32 34 40 H47" />
+                </g>
+                <circle cx="17" cy="32" r="6.5" fill="var(--mark-stroke)" />
+                <circle cx="47" cy="24" r="6.5" fill="var(--mark-stroke)" />
+                <circle cx="47" cy="40" r="6.5" fill="var(--mark-stroke)" />
             </svg>
             <span className="mark-text">Workflow Engine</span>
         </Link>
