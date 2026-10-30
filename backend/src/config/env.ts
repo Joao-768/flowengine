@@ -46,7 +46,7 @@ const schema = z
         SMTP_SECURE: bool.default(false),
         SMTP_USER: z.string().optional(),
         SMTP_PASS: z.string().optional(),
-        SMTP_FROM: z.string().default('Workflow Engine <no-reply@example.com>'),
+        SMTP_FROM: z.string().default('FlowEngine <no-reply@example.com>'),
     })
     .superRefine((env, ctx) => {
         if (env.NODE_ENV === 'production' && env.JWT_SECRET.length < 32) {

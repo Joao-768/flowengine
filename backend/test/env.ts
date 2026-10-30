@@ -4,7 +4,7 @@
  */
 process.env.NODE_ENV = 'test'
 process.env.DATABASE_URL =
-    process.env.TEST_DATABASE_URL ?? 'postgresql://localhost:5432/workflow_automation_engine_test'
+    process.env.TEST_DATABASE_URL ?? 'postgresql://localhost:5432/flowengine_test'
 process.env.REDIS_URL = process.env.TEST_REDIS_URL ?? 'redis://localhost:6379'
 process.env.QUEUE_PREFIX = 'wae-test'
 process.env.JWT_SECRET = 'test-secret-that-is-long-enough-for-tests'

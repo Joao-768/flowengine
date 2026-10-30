@@ -1,5 +1,5 @@
 {
-    "name": "workflow-automation-engine",
+    "name": "flowengine",
     "private": true,
     "description": "A small event-driven workflow automation engine: visual builder, BullMQ workers, PostgreSQL execution traces.",
     "workspaces": [

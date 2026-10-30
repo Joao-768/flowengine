@@ -80,7 +80,7 @@ export default function Landing() {
                 </section>
 
                 <footer className="base">
-                    <span>Workflow Automation Engine</span>
+                    <span>FlowEngine</span>
                     <span>portfolio project</span>
                 </footer>
             </div>

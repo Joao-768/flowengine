@@ -31,7 +31,7 @@ services:
       ipAllowList: []
 
     - type: web
-      name: workflow-automation-engine-api
+      name: flowengine-api
       runtime: node
       plan: free
       buildCommand: npm ci && npm run build -w shared && npm run build -w backend
@@ -49,7 +49,7 @@ services:
             sync: false
 
     - type: worker
-      name: workflow-automation-engine-worker
+      name: flowengine-worker
       runtime: node
       plan: starter
       buildCommand: npm ci && npm run build -w shared && npm run build -w backend

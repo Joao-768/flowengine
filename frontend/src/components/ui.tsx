@@ -26,7 +26,7 @@ export function Mark({ to = '/dashboard' }: { to?: string }) {
                 <circle cx="47" cy="24" r="6.5" fill="var(--mark-stroke)" />
                 <circle cx="47" cy="40" r="6.5" fill="var(--mark-stroke)" />
             </svg>
-            <span className="mark-text">Workflow Engine</span>
+            <span className="mark-text">FlowEngine</span>
         </Link>
     )
 }

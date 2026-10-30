@@ -1,4 +1,4 @@
-# Workflow Automation Engine
+# FlowEngine
 
 A small, event-driven workflow automation platform in the spirit of Zapier,
 n8n or GitHub Actions. You draw a workflow as a graph in a visual builder;
@@ -424,7 +424,7 @@ npm run lint          # oxlint + Prettier check
   semantics, retry decisions, HTTP input resolution and redaction, the SSRF
   guard.
 - **Integration** (`backend/test`): the real API, queue and an in-process
-  worker against a throwaway database (`workflow_automation_engine_test`,
+  worker against a throwaway database (`flowengine_test`,
   recreated on every run) and a separate Redis prefix. External HTTP is a
   local mock server; email is captured in memory. Covers auth, isolation
   between two users, workflow management and versioning, schedules in Redis,
