@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useAuth } from '../auth/AuthContext'
 import { Mark, ThemeToggle } from '../components/ui'
 
 const DIAGRAM = `WHEN  webhook received
@@ -13,6 +14,7 @@ queued ─▶ running ─▶ success
 every step stored: input, output, attempts, duration`
 
 export default function Landing() {
+    const { token } = useAuth()
     return (
         <>
             <header className="rail">
@@ -20,10 +22,18 @@ export default function Landing() {
                     <Mark to="/" />
                     <div className="whoami" style={{ marginLeft: 'auto' }}>
                         <ThemeToggle />
-                        <Link to="/login">Sign in</Link>
-                        <Link to="/register" className="btn btn-primary btn-sm">
-                            Create account
-                        </Link>
+                        {token ? (
+                            <Link to="/dashboard" className="btn btn-primary btn-sm">
+                                Open dashboard
+                            </Link>
+                        ) : (
+                            <>
+                                <Link to="/login">Sign in</Link>
+                                <Link to="/register" className="btn btn-primary btn-sm">
+                                    Create account
+                                </Link>
+                            </>
+                        )}
                     </div>
                 </div>
             </header>
@@ -39,12 +49,20 @@ export default function Landing() {
                             executes it step by step and records every attempt.
                         </p>
                         <div className="hero-actions">
-                            <Link to="/register" className="btn btn-primary">
-                                Create account
-                            </Link>
-                            <Link to="/login" className="btn">
-                                Sign in
-                            </Link>
+                            {token ? (
+                                <Link to="/dashboard" className="btn btn-primary">
+                                    Open dashboard
+                                </Link>
+                            ) : (
+                                <>
+                                    <Link to="/register" className="btn btn-primary">
+                                        Create account
+                                    </Link>
+                                    <Link to="/login" className="btn">
+                                        Sign in
+                                    </Link>
+                                </>
+                            )}
                         </div>
                     </div>
                     <pre className="hero-diagram" aria-label="Example workflow">

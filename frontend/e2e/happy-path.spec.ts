@@ -13,7 +13,8 @@ test('build, run and inspect a workflow', async ({ page }) => {
     await page.goto('/register')
     await page.getByLabel('Name').fill('E2E')
     await page.getByLabel('Email').fill(email)
-    await page.getByLabel('Password').fill('password123')
+    await page.getByLabel('Password', { exact: true }).fill('password123')
+    await page.getByLabel('Confirm password').fill('password123')
     await page.getByRole('button', { name: 'Create account' }).click()
     await expect(page).toHaveURL(/\/dashboard/)
 

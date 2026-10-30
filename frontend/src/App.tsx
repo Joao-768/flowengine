@@ -24,7 +24,7 @@ export default function App() {
 
     return (
         <Routes>
-            <Route path="/" element={guest(<Landing />)} />
+            <Route path="/" element={<Landing />} />
             <Route path="/login" element={guest(<Login />)} />
             <Route path="/register" element={guest(<Register />)} />
 

@@ -1,12 +1,12 @@
-import { useEffect, useRef, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type InputHTMLAttributes, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { Monitor, Moon, Sun } from 'lucide-react'
+import { Eye, EyeOff, Monitor, Moon, Sun } from 'lucide-react'
 import { pretty } from '../lib/format'
 import { setThemeMode, useThemeMode, type ThemeMode } from '../lib/theme'
 
 /** The branching workflow mark from the favicon, drawn inline. The tile and
  *  stroke come from theme tokens, so the mark reads on white and on black. */
-export function Mark({ to = '/dashboard' }: { to?: string }) {
+export function Mark({ to = '/' }: { to?: string }) {
     return (
         <Link to={to} className="mark">
             <svg width="20" height="20" viewBox="0 0 64 64" aria-hidden="true">
@@ -53,6 +53,26 @@ export function ThemeToggle({ className = '' }: { className?: string }) {
         >
             <Icon size={16} aria-hidden="true" />
         </button>
+    )
+}
+
+/** A password input with an eye button that toggles the characters visible. */
+export function PasswordInput(props: Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>) {
+    const [visible, setVisible] = useState(false)
+    const Icon = visible ? EyeOff : Eye
+    return (
+        <div className="password">
+            <input {...props} className="field" type={visible ? 'text' : 'password'} />
+            <button
+                type="button"
+                className="password-toggle"
+                onClick={() => setVisible((value) => !value)}
+                aria-label={visible ? 'Hide password' : 'Show password'}
+                aria-pressed={visible}
+            >
+                <Icon size={15} aria-hidden="true" />
+            </button>
+        </div>
     )
 }
 

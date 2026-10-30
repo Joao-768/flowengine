@@ -788,6 +788,31 @@ input.field.code {
     font-size: 12.5px;
 }
 
+/* password input with the show/hide button over its right edge */
+.password {
+    position: relative;
+}
+
+.password .field {
+    padding-right: 38px;
+}
+
+.password-toggle {
+    position: absolute;
+    inset-block: 0;
+    right: 0;
+    width: 36px;
+    padding: 0;
+    border: 0;
+    border-radius: 0 4px 4px 0;
+    background: transparent;
+    color: var(--ink-low);
+}
+
+.password-toggle:hover {
+    color: var(--ink);
+}
+
 select.field {
     padding-right: 32px;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236e6e6e' fill='none' stroke-width='1.4'/%3E%3C/svg%3E");

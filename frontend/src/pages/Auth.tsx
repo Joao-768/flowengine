@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { errorText } from '../api/client'
 import { auth } from '../api/endpoints'
 import { useAuth } from '../auth/AuthContext'
-import { Fault, Mark, ThemeToggle } from '../components/ui'
+import { Fault, Mark, PasswordInput, ThemeToggle } from '../components/ui'
 
 function useSubmit() {
     const [error, setError] = useState('')
@@ -90,9 +90,12 @@ export function Register() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [confirm, setConfirm] = useState('')
+    const mismatch = confirm !== '' && confirm !== password
 
     const submit = (event: FormEvent) => {
         event.preventDefault()
+        if (password !== confirm) return
         void run(async () => {
             const res = await auth.register({ name, email, password })
             login(res.token, res.user)
@@ -135,10 +138,8 @@ export function Register() {
                 </div>
                 <div className="form-row">
                     <label htmlFor="password">Password</label>
-                    <input
+                    <PasswordInput
                         id="password"
-                        className="field"
-                        type="password"
                         autoComplete="new-password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -146,6 +147,23 @@ export function Register() {
                         minLength={8}
                     />
                     <span className="hint">At least 8 characters, with a letter and a digit.</span>
+                </div>
+                <div className="form-row">
+                    <label htmlFor="confirm">Confirm password</label>
+                    <PasswordInput
+                        id="confirm"
+                        autoComplete="new-password"
+                        value={confirm}
+                        onChange={(e) => setConfirm(e.target.value)}
+                        required
+                        aria-invalid={mismatch || undefined}
+                        aria-describedby={mismatch ? 'confirm-hint' : undefined}
+                    />
+                    {mismatch && (
+                        <span id="confirm-hint" className="hint bad">
+                            The two passwords do not match.
+                        </span>
+                    )}
                 </div>
                 <button type="submit" className="btn-primary" disabled={busy}>
                     {busy ? 'Creating...' : 'Create account'}
