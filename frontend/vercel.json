@@ -2,6 +2,19 @@
     "installCommand": "cd .. && npm ci",
     "buildCommand": "npm run build",
     "outputDirectory": "dist",
+    "redirects": [
+        {
+            "source": "/:path(.*)",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "workflow.joao-caetano.com"
+                }
+            ],
+            "destination": "https://flowengine.joao-caetano.com/:path",
+            "permanent": true
+        }
+    ],
     "rewrites": [
         {
             "source": "/((?!assets/|favicon\\.ico$|favicon\\.svg$|theme\\.js$|apple-touch-icon\\.png$|robots\\.txt$).*)",
