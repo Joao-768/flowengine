@@ -1,6 +1,14 @@
 import type { ApiErrorBody } from '@wae/shared'
 
-export const API_URL: string = import.meta.env.VITE_API_URL ?? 'http://localhost:3000'
+/**
+ * The API is served under a path prefix (https://api.joao-caetano.com/workflow
+ * in production, see .env.production), so every request URL is the base plus
+ * the path, never resolved against it: `new URL('/auth', base)` would drop the
+ * prefix.
+ */
+export const API_URL: string = (
+    import.meta.env.VITE_API_URL ?? 'http://localhost:4400/workflow'
+).replace(/\/$/, '')
 
 const TOKEN_KEY = 'token'
 
@@ -49,7 +57,7 @@ type Options = {
 }
 
 export async function request<T>(path: string, options: Options = {}): Promise<T> {
-    const url = new URL(path, API_URL)
+    const url = new URL(`${API_URL}${path}`)
     for (const [key, value] of Object.entries(options.query ?? {})) {
         if (value !== undefined && value !== '') url.searchParams.set(key, String(value))
     }

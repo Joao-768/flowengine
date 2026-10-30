@@ -1,10 +1,10 @@
 import { defineConfig, devices } from '@playwright/test'
 
 /**
- * End-to-end test against the real stack. It needs Postgres and Redis
- * running (docker compose up -d), a migrated database and a worker
- * (npm run worker). The API and the frontend are started here unless they
- * are already running.
+ * End-to-end test against the real stack. The API now runs in the
+ * api-joao-caetano host (https://github.com/Joao-768/api-joao-caetano), which
+ * must already be running on port 4400 with Postgres and Redis behind it.
+ * The frontend is started here unless it is already running.
  */
 export default defineConfig({
     testDir: './e2e',
@@ -15,12 +15,6 @@ export default defineConfig({
     },
     projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
     webServer: [
-        {
-            command: 'npm run dev -w backend',
-            cwd: '..',
-            url: 'http://localhost:3000/health',
-            reuseExistingServer: true,
-        },
         { command: 'npm run dev', url: 'http://localhost:5176', reuseExistingServer: true },
     ],
 })
